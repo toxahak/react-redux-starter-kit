@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react'
 import '../../styles/core.scss'
+import '../../styles/semantic.less'
+import styles from './CoreLayout.scss'
+import SideBar from '../../layouts/SideBar/SideBar.js'
 
 // Note: Stateless/function components *will not* hot reload!
 // react-transform *only* works on component classes.
@@ -12,8 +15,9 @@ import '../../styles/core.scss'
 // define it with a plain javascript function...
 function CoreLayout ({ children }) {
   return (
-    <div className='page-container'>
-      <div className='view-container'>
+    <div className='full-height'>
+      <SideBar />
+      <div className={styles['container']}>
         {children}
       </div>
     </div>

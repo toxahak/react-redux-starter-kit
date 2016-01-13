@@ -1,9 +1,10 @@
 import Koa from 'koa'
 import convert from 'koa-convert'
 import webpack from 'webpack'
-import webpackConfig from '../build/webpack.config' 
+import webpackConfig from '../build/webpack.config'
 import historyApiFallback from 'koa-connect-history-api-fallback'
 import serve from 'koa-static'
+import proxy from 'koa-proxy'
 import _debug from 'debug'
 import config from '../config'
 
@@ -22,6 +23,12 @@ app.use(convert(historyApiFallback({
 // Apply Webpack HMR Middleware
 // ------------------------------------
 if (config.env === 'development') {
+  // Proxy
+  app.use(convert(proxy({
+    host: 'http://localhost:3000',
+    match: /^\/api\//
+  })))
+
   const compiler = webpack(webpackConfig)
 
   // Enable webpack-dev and webpack-hot middleware

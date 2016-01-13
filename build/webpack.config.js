@@ -141,6 +141,16 @@ webpackConfig.module.loaders.push({
   ]
 })
 
+webpackConfig.module.loaders.push({
+  test: /\.less/,
+  loaders: [
+    'style',
+    'css?sourceMap',
+    'postcss',
+    'less'
+  ]
+})
+
 // Don't treat global SCSS as modules
 webpackConfig.module.loaders.push({
   test: /\.scss$/,

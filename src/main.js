@@ -5,6 +5,7 @@ import { syncReduxAndRouter } from 'redux-simple-router'
 import routes from './routes'
 import Root from './containers/Root'
 import configureStore from './redux/configureStore'
+import {initAuth} from './redux/utils/authToken.js'
 
 const history = useBasename(createHistory)({
   basename: __BASENAME__
@@ -18,3 +19,5 @@ ReactDOM.render(
   <Root history={history} routes={routes} store={store} />,
   document.getElementById('root')
 )
+
+initAuth(store.dispatch)

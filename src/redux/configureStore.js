@@ -1,5 +1,6 @@
-import thunk from 'redux-thunk'
+import createMiddleware from './middleware/clientMiddleware.js'
 import rootReducer from './rootReducer'
+import ApiClient from './helpers/ApiClient.js'
 import {
   applyMiddleware,
   compose,
@@ -8,7 +9,9 @@ import {
 
 export default function configureStore (initialState) {
   let createStoreWithMiddleware
-  const middleware = applyMiddleware(thunk)
+
+  const client = new ApiClient()
+  const middleware = applyMiddleware(createMiddleware(client))
 
   if (__DEBUG__) {
     createStoreWithMiddleware = compose(

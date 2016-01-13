@@ -17,7 +17,7 @@ export default class Root extends React.Component {
     )
   }
 
-  get devTools () {
+  devTools () {
     if (__DEBUG__) {
       if (__DEBUG_NEW_WINDOW__) {
         if (!window.devToolsExtension) {
@@ -25,20 +25,15 @@ export default class Root extends React.Component {
         } else {
           window.devToolsExtension.open()
         }
-      } else if (!window.devToolsExtension) {
-        const DevTools = require('containers/DevTools').default
-        return <DevTools />
       }
     }
   }
 
   render () {
+    this.devTools()
     return (
       <Provider store={this.props.store}>
-        <div style={{ height: '100%' }}>
-          {this.content}
-          {this.devTools}
-        </div>
+        {this.content}
       </Provider>
     )
   }

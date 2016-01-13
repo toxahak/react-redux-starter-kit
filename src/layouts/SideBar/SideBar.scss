@@ -1,0 +1,17 @@
+.sidebar {
+  position: relative;
+  z-index: 1;
+  background-color: #454F57;
+  width: 210px;
+  flex: 0 0 auto;
+}
+
+.logo {
+  margin: 0 auto;
+}
+
+:global {
+  .ui.inverted.menu {
+    background: #454F57;
+  }
+}
